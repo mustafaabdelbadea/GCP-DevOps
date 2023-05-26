@@ -6,8 +6,8 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    bucket = var.BACKEND_BUCKET
-    prefix = var.BACKEND_PREFIX
+    bucket = "387311-terraform"
+    prefix = "terraform/state"
   }
   required_providers {
     google = {
