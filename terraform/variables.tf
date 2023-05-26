@@ -1,14 +1,8 @@
 variable "PROJECT" {
-    type = string
+  type = string
 }
 variable "REGION" {
-    type = string
-}
-variable "BACKEND_BUCKET" {
-    type = string
-}
-variable "BACKEND_PREFIX" {
-    type = string
+  type = string
 }
 
 variable "COMPUTE_SERVICE" {
@@ -24,6 +18,23 @@ variable "CONTAINER_SERVICE" {
 variable "NAT_NAME" {
   type = string
 }
+
+variable "VPC_NAME" {
+  type = string
+}
+
+variable "ROUTING_MODE" {
+  type = string
+}
+
+variable "VPC_MTU" {
+  type = number
+}
+
+variable "ROUTER_NAME" {
+  type = string
+}
+
 ///////////////////// firewall ////////////////////
 variable "FIREWALL_NAME" {
   type = string
