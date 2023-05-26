@@ -1,7 +1,7 @@
 resource "google_compute_subnetwork" "private" {
-  name                     = "private"
+  name                     = var.subnet_name
   ip_cidr_range            = "10.0.0.0/18"
-  region                   = "us-east1"
+  region                   = var.region
   network                  = google_compute_network.main.id
   private_ip_google_access = true
 

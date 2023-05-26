@@ -1,3 +1,6 @@
+variable "region" {
+  type = string
+}
 variable "firewall_name" {
   type = string
 }
@@ -23,6 +26,11 @@ variable "container_service" {}
 variable "router_name" {
   type = string
 }
-variable "region" {
+
+variable "subnet_name" {
+  type = string
+}
+
+variable "nat_name" {
   type = string
 }
