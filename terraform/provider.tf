@@ -1,13 +1,13 @@
 provider "google" {
-  project = "iti-project-387311"
-  region  = "us-east1"
+  project = var.PROJECT
+  region  = var.REGION
 }
 
 
 terraform {
   backend "gcs" {
-    bucket = "387311-terraform"
-    prefix = "terraform/state"
+    bucket = var.BACKEND_BUCKET
+    prefix = var.BACKEND_PREFIX
   }
   required_providers {
     google = {
