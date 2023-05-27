@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: jenkins-deployer-rb
+  namespace: jenkins-deployment
+subjects:
+  - kind: ServiceAccount
+    name: jenkins-svc-account
+roleRef:
+  kind: Role
+  name: k8s-role
+  apiGroup: rbac.authorization.k8s.io
+

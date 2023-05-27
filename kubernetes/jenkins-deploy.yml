@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+  labels:
+    app: jenkins
+  namespace: jenkins-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      serviceAccountName: jenkins-svc-account
+      containers:
+      - name: jenkins
+        image: jenkins/jenkins:jdk11
+        ports:
+        - containerPort: 8080
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+
+          
+      #   volumeMounts:
+      #   - mountPath: /var/run/docker.sock
+      #     name: docker-socket-volume
+      # volumes:
+      #   - name: docker-socket-volume
+      #     hostPath:
+      #       path: /var/run/docker.sock
+      #       type: File
