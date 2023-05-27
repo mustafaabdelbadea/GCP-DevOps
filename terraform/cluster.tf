@@ -18,4 +18,5 @@ module "cluster" {
   networking_mode                     = var.NETWORKING_MODE
   compute_network_main                = module.network.compute_network_main
   compute_subnetwork_private          = module.network.compute_subnetwork_private
+  google_compute_router_nat           = module.network.google_compute_router_nat
 }

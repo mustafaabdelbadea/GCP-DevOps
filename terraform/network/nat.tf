@@ -13,7 +13,6 @@ resource "google_compute_router_nat" "nat" {
 
   nat_ips = [google_compute_address.nat.self_link]
 
-  depends_on = [google_compute_address.nat]
 }
 
 resource "google_compute_address" "nat" {

@@ -53,3 +53,4 @@ variable "networking_mode" {
 /// Empty type acts like type any
 variable "compute_network_main" {}
 variable "compute_subnetwork_private" {}
+variable "google_compute_router_nat" {}
