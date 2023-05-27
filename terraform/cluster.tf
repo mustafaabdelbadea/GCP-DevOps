@@ -1,50 +1,21 @@
-# resource "google_container_cluster" "primary" {
-#   name                     = "primary"
-#   location                 = "us-east1-b"
-#   remove_default_node_pool = true
-#   initial_node_count       = 1
-#   network                  = google_compute_network.main.self_link
-#   subnetwork               = google_compute_subnetwork.private.self_link
-#   networking_mode          = "VPC_NATIVE"
-
-#   # Optional, if you want multi-zonal cluster
-#   node_locations = [
-#     "us-east1-c"
-#   ]
-
-#   addons_config {
-#     http_load_balancing {
-#       disabled = true
-#     }
-#     horizontal_pod_autoscaling {
-#       disabled = false
-#     }
-#   }
-
-#   release_channel {
-#     channel = "REGULAR"
-#   }
-
-#   workload_identity_config {
-#     workload_pool = "iti-project-387311.svc.id.goog"
-#   }
-
-#   ip_allocation_policy {
-#     cluster_secondary_range_name  = "k8s-pod-range"
-#     services_secondary_range_name = "k8s-service-range"
-#   }
-
-#   private_cluster_config {
-#     enable_private_nodes    = true
-#     enable_private_endpoint = false
-#     master_ipv4_cidr_block  = "172.16.0.0/28"
-#   }
-
-#   #   Jenkins use case
-#   #   master_authorized_networks_config {
-#   #     cidr_blocks {
-#   #       cidr_block   = "10.0.0.0/18"
-#   #       display_name = "private-subnet-w-jenkins"
-#   #     }
-#   #   }
-# }
+module "cluster" {
+  source                              = "./cluster"
+  service_account_id                  = var.SERVICE_ACCOUNT_ID
+  node_pool_name                      = var.NODE_POOL_NAME
+  node_machine_type                   = var.NODE_MACHINE_TYPE
+  node_label_role                     = var.NODE_LABEL_ROLE
+  oauth_scopes_link                   = var.OAUTH_SCOPES_LINK
+  initial_node_count                  = var.INITIAL_NODE_COUNT
+  cluster_location                    = var.CLUSTER_LOCATION
+  node_location_1                     = var.NODE_LOCATION_1
+  project                             = var.PROJECT
+  cluster_name                        = var.CLUSTER_NAME
+  cluster_secondary_range_name        = var.CLUSTER_SECONDARY_RANGE_NAME
+  services_secondary_range_name       = var.SERVICES_SECONDARY_RANGE_NAME
+  remove_default_node_pool            = var.REMOVE_DEFAULT_NODE_POOL
+  http_load_balancing_disabled        = var.HTTP_LOAD_BALANCING_DISABLED
+  horizontal_pod_autoscaling_disabled = var.HORIZONTAL_POD_AUTOSCALING_DISABLED
+  networking_mode                     = var.NETWORKING_MODE
+  compute_network_main                = module.network.compute_network_main
+  compute_subnetwork_private          = module.network.compute_subnetwork_private
+}
