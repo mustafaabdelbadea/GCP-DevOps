@@ -4,6 +4,6 @@ metadata:
   name: k8s-role
   namespace: jenkins-deployment
 rules:
-  - apiGroups: [""]
-    resources: ["*"]
+  - apiGroups: ["", "apps", extensions"]
+    resources: ["deployments", "pods", "replicasets", "services"]
     verbs: ["*"]  
