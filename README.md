@@ -60,12 +60,12 @@ GCP-DevOps
     └── variables.tf
 ```
 
-### Terraform
+### ⏫ Terraform
 - `Provider.tf` To configure the provider, project and the backend for the terraform (Bucket).
 - `Variables.tf` All terraform variables types definiation.
     - Create `variables` without type to act as type `any`.
 - `prod.tfvars` Production variables.
-##### Modules
+##### :package: Modules
 
 > 1. `apis module` Enable and disable apis 
 - Comopute api.
@@ -110,4 +110,4 @@ cd kubernetes
 ./apply.sh
 ```
 
-- [@linkedin](https://www.linkedin.com/in/mustafa-abdelbadea/)
+- :man_technologist: [@linkedin](https://www.linkedin.com/in/mustafa-abdelbadea/)
