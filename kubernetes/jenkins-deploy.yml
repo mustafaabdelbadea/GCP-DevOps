@@ -21,10 +21,26 @@ spec:
         image: jenkins/jenkins:jdk11
         ports:
         - containerPort: 8080
+        volumeMounts:
+          - mountPath: /var/run/
+            name: docker-socket-volume
         securityContext:
           allowPrivilegeEscalation: false
           runAsUser: 0
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/bash", '-c' , 'curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"; install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl']
+              command: [
+                  "/bin/bash",'-c' ,
+                  'curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl";
+                  install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl;apt-get update ;
+                  apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release ; 
+                  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg ; 
+                  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null ; 
+                  apt-get update ; apt-get install -y docker-ce-cli ; rm -rf /var/lib/apt/lists/*
+                  echo hello'
+                ]
+      volumes:
+        - name: docker-socket-volume
+          hostPath:
+            path: /var/run/
