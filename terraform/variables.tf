@@ -95,3 +95,6 @@ variable "HORIZONTAL_POD_AUTOSCALING_DISABLED" {
 variable "NETWORKING_MODE" {
   type = string
 }
+variable "IMAGE_TYPE" {
+  type = string
+}

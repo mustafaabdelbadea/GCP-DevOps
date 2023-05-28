@@ -11,7 +11,7 @@ resource "google_container_node_pool" "general" {
   node_config {
     preemptible  = false
     machine_type = var.node_machine_type
-
+    image_type = var.image_type
     labels = {
       role = var.node_label_role
     }

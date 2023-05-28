@@ -49,6 +49,9 @@ variable "horizontal_pod_autoscaling_disabled" {
 variable "networking_mode" {
   type = string
 }
+variable "image_type" {
+  type = string
+}
 
 /// Empty type acts like type any
 variable "compute_network_main" {}
